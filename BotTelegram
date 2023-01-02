@@ -5,20 +5,21 @@ root_directory = (fr'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_
 data = datetime.datetime.now()
 CHAVE_API = "5971673742:AAEJyuVS3k2KDwHnsutcZDbTwvwB5dhixsc" #chave de criação do BOT do telegram via BotFather
 bot = telebot.TeleBot(CHAVE_API)
-browser = webdriver.Firefox()
-browser.get(f'https://www.stormvistawxmodels.com/')
 @bot.message_handler(commands=["opcao1"])
 def opcao1(mensagem):
     try:
-        busca_elemento = browser.find_element(By.ID, 'edit-submite')
+        busca_elemento = fr'C:\Users\denis.lima\Music\teste.png'
         if busca_elemento:
             bot.send_message(mensagem.chat.id, f"O BOTÃO APARECE")
+            bot.send_photo(chat_id=5942965901, photo=open(r'\120-00z-gfs-suite.png'))
             print(mensagem)
         else:
             bot.send_message(mensagem.chat.id, f"BOTÃO INDISPONÍVEL")
+            bot.send_photo(chat_id=5942965901, photo=open(r'\120-00z-gfs-suite.png'))
     except Exception as erro:
         print(erro)
         bot.send_message(mensagem.chat.id, "BOTÃO INDISPONÍVEL")
+        bot.send_photo(chat_id=5942965901, photo=open(r'\120-00z-gfs-suite.png'))
         print(mensagem)
 
 @bot.message_handler(commands=["opcao2"])
@@ -33,6 +34,7 @@ def opcao3(mensagem):
         bot.send_message(mensagem.chat.id, f"O MAPA DE HOJE JÁ ESTÁ DISPONÍVEL NO DIRETÓRIO {root_directory}")
     else:
         bot.send_message(mensagem.chat.id, f"O MAPA DE HOJE NÃO ESTÁ DISPONÍVEL")
+
 
 
 
