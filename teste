@@ -1,33 +1,27 @@
 import telebot, datetime, os, urllib.request
 from selenium.webdriver.common.by import By
 from selenium import webdriver
-data = datetime.datetime.now()
+data = datetime.datetime.today().strftime("%Y%m%d")
 CHAVE_API = "5971673742:AAEJyuVS3k2KDwHnsutcZDbTwvwB5dhixsc" #chave de criação do BOT do telegram via BotFather
 bot = telebot.TeleBot(CHAVE_API)
+def teste():
+    import operadores_Web_2 as opw
+    mapas123 = opw.operador_StormVista('geck')
+    mapas123.cfsweekly00z()
+
 @bot.message_handler(commands=["opcao1"])
 def opcao1(mensagem):
-    try:
-        busca_elemento = (r'C:\Log\OneDrive - GALAPAGOS CAPITAL\Imagens\teste.jpg')
-        if busca_elemento:
-            bot.send_message(mensagem.chat.id, f"O BOTÃO APARECE")
-            bot.send_photo(mensagem.chat.id, ('https://s2.glbimg.com/VFUUabGiG1xF-rD8McH8JW36rqY=/0x0:2048x1501/600x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2023/3/V/mvyOvtS3meuggOOEFS2g/fljn4ejxkacvmeq.jfif')
-            print(mensagem)
-            import operadores_Web_2 as opw
-            mapas123 = opw.operador_StormVista('geck')
-            mapas1 = ['120', '240', '360']
-            modelos = ['cmc-ens-suite']
-            horario = ['00z']
-            mapas123.mapaesp(modelos, horario, mapas1, True)
-            bot.send_message(mensagem.chat.id, "MAPAS BAIXADOS E DISPONÍVEIS NO DIRETÓRIO")
-        else:
-            bot.send_message(mensagem.chat.id, f"BOTÃO INDISPONÍVEL")
-    except Exception as erro:
-        print(erro)
-        bot.send_message(mensagem.chat.id, "BOTÃO INDISPONÍVEL")
+    data = datetime.datetime.today().strftime("%Y%m%d")
+    for c in range(1, 5):
+        documento = open(fr'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\cfs-weekly\20221104\20221104_cfs_weekly_{c}.png', 'rb')
+        bot.send_document(mensagem.chat.id, documento)
+        enviar(mensagem)
         print(mensagem)
-    lista_mapas = ['120', '240', '360']
-    documento = (fr'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\cmc-ens-suite\20230103\20230103_cmc-ens-suite_00z_120.png')
-    bot.send_document(mensagem.chat.id, documento)
+def enviar(mensagem):
+    data = datetime.datetime.today().strftime("%Y%m%d")
+    #documento = open(r'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\cfs-weekly\20221104\20221104_cfs_weekly_2.png', 'rb')
+    #bot.send_document(mensagem.chat.id, documento)
+
 def verificar(mensagem):
     return True
 
@@ -39,6 +33,15 @@ def responder(mensagem):
      /opcao2 gfs-ens-suite
      /opcao3 ecmwf-suite
 Responder qualquer outra coisa não vai funcionar, clique em uma das opções"""
-    bot.reply_to(mensagem, texto)
+    bot.send_message(mensagem, texto)
 
+def e():
+    for c in range(1, 5):
+        chatid = 5942965901
+        documento = open(fr'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\cfs-weekly\20221104\20221104_cfs_weekly_{c}.png', 'rb')
+        bot.send_document(chatid, documento)
+        enviar(mensagem)
+        print(mensagem)
+
+e()
 bot.polling()
