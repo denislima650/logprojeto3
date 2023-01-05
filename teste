@@ -7,20 +7,31 @@ bot = telebot.TeleBot(CHAVE_API)
 def teste():
     import operadores_Web_2 as opw
     mapas123 = opw.operador_StormVista('geck')
-    mapas123.cfsweekly00z()
+    mapas = ['120', '240']
+    modelos = ['ecmwf-suite']
+    horario = ['00z']
+    mapas123.mapaesp(modelos, horario, mapas, True)
+    #mapas123.cfsweekly00z()
 
 @bot.message_handler(commands=["opcao1"])
 def opcao1(mensagem):
-    data = datetime.datetime.today().strftime("%Y%m%d")
-    for c in range(1, 5):
-        documento = open(fr'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\cfs-weekly\20221104\20221104_cfs_weekly_{c}.png', 'rb')
-        bot.send_document(mensagem.chat.id, documento)
-        enviar(mensagem)
-        print(mensagem)
-def enviar(mensagem):
-    data = datetime.datetime.today().strftime("%Y%m%d")
-    #documento = open(r'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\cfs-weekly\20221104\20221104_cfs_weekly_2.png', 'rb')
-    #bot.send_document(mensagem.chat.id, documento)
+    import operadores_Web_2 as opw
+    mapas123 = opw.operador_StormVista('geck')
+    mapas = ['120', '240']
+    modelos = ['ecmwf-suite']
+    horario = ['00z']
+    mapas123.mapaesp(modelos, horario, mapas, True)
+    #mapas123.cfsweekly00z()
+
+@bot.message_handler(commands=["cfs-weekly"])
+def opcao2(mensagem):
+    import operadores_Web_2 as opw
+    mapas123 = opw.operador_StormVista('geck')
+    mapas = ['120', '240']
+    modelos = ['ecmwf-suite']
+    horario = ['00z']
+    #mapas123.mapaesp(modelos, horario, mapas, True)
+    mapas123.cfsweekly00z()
 
 def verificar(mensagem):
     return True
@@ -30,18 +41,19 @@ def responder(mensagem):
     texto = """
     Escolha uma opção para continuar (Clique no item):
      /opcao1 Mapas_StormVista
-     /opcao2 gfs-ens-suite
+     /opcao2 cfs-weekly
      /opcao3 ecmwf-suite
 Responder qualquer outra coisa não vai funcionar, clique em uma das opções"""
     bot.send_message(mensagem, texto)
 
 def e():
-    for c in range(1, 5):
+    teste()
+    lista_mapas = ['120', '240']
+    for c in lista_mapas:
+        data = datetime.datetime.today().strftime("%Y%m%d")
         chatid = 5942965901
-        documento = open(fr'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\cfs-weekly\20221104\20221104_cfs_weekly_{c}.png', 'rb')
+        documento = open(fr'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\ecmwf-suite\{data}\{data}_ecmwf-suite_00z_{c}.png', 'rb')
         bot.send_document(chatid, documento)
-        enviar(mensagem)
-        print(mensagem)
 
 e()
 bot.polling()
