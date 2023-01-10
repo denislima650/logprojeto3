@@ -27,13 +27,14 @@ def responder(mensagem):
     texto = """
     Escolha uma opção para continuar (Clique no item):
      /opcao1 gfs-suite
+     /opcao6 cfs-weekly
 Responder qualquer outra coisa não vai funcionar, clique em uma das opções"""
     bot.reply_to(mensagem, texto)
 
 def e():
-    #chatid = 5942965901 #Denis
+    chatid = 5942965901 #Denis
     #chatid = -883839244 #Teste
-    chatid = -865724017  #Mapas_StormVista
+    #chatid = -865724017  #Mapas_StormVista
     modelos_stormvista = ['gfs-suite', 'gfs-ens-suite', 'ecmwf-suite', 'ecmwf-eps-suite', 'cmc-ens-suite']
     for modelo in modelos_stormvista:
         for c in range(120, 480, 120):
@@ -41,12 +42,19 @@ def e():
             chatid = -865724017
             try:
                 documento = open(fr'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\{modelo}\{data}\{data}_{modelo}_00z_{c}.png', 'rb')
-                bot.send_document(chatid, documento)
+                bot.send_photo(chatid, documento, caption=fr"{data}_{modelo}_00z_{c}")
             except:
                 pass
     for c in range(1, 5):
         data = datetime.datetime.today().strftime("%Y%m%d")
         documento = open(fr'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\cfs-weekly\{data}\{data}_cfs-weekly_00z_{c}_{contador}.png', 'rb')
-        bot.send_document(chatid, documento)
+        bot.send_photo(chatid, documento)
+def f():
+    chatid = 610447044
+    documento = open(
+        fr'C:\Users\denis.lima\Downloads\teste.pdf',
+        'rb')
+    bot.send_document(chatid, documento)
+
 e()
 bot.polling()
