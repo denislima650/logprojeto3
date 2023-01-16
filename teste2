@@ -1,0 +1,28 @@
+from PyPDF2 import PdfWriter
+import docx, datetime, os, sys
+from docx.shared import Inches
+doc = docx.Document()
+doc.add_heading('Mapas StormVista', 0)
+doc.add_paragraph("Produtos com alta liquidez: Sudeste; Convencional; Preço fixo\n")
+dir = (fr'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\gfs-suite')
+tabela_gfs = doc.add_table(rows=1, cols=2)
+for c in range(120, 480, 120):
+    doc.add_picture(fr'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\gfs-suite\20221104_gfs-suite_00z_{c}.png', width=Inches(1.25))
+table = doc.add_table(rows=1, cols=3)
+hdr_cells = table.rows[0].cells
+hdr_cells[0].text = 'Qty'
+hdr_cells[1].text = 'Id'
+hdr_cells[2].text = 'Desc'
+#for qty, id, desc in records:
+#    row_cells = table.add_row().cells
+#    row_cells[0].text = str(qty)
+ #   row_cells[1].text = id
+  #  row_cells[2].text = desc
+
+
+
+
+
+
+
+doc.save(fr'{dir}\20221104\teste.docx')
