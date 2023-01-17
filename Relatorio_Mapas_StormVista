@@ -1,9 +1,7 @@
-import aspose.words as aw
-import aspose.pdf
-import docx
+import datetime, aspose.words as aw, aspose.pdf
 doc = aw.Document()
-docs = docx.Document()
 builder = aw.DocumentBuilder(doc)
+data = datetime.date.today().strftime('%Y%m%d')
 modelo = ['gfs-suite', 'gfs-ens-suite', 'ecmwf-suite', 'ecmwf-eps-suite', 'cmc-ens-suite']
 builder.font.name = "Bahnschrift"
 builder.font.bold = True
@@ -18,7 +16,8 @@ for m in modelo:
     builder.writeln(f"{m.upper()}")
     for c in range(120, 480, 120):
         try:
-            imagem = (fr'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\{m}\20230116\20230116_{m}_00z_{c}.png')
+            imagem = (fr'C:\Log\OneDrive - GALAPAGOS CAPITAL\5.MIDDLE\Imagens\mapas_stormvista\{m}\{data}\{data}_{m}_00z_{c}.png')
+            print(imagem)
             builder.insert_image(imagem, width=145.00, height=145.00)
         except:
             continue
