@@ -1,6 +1,4 @@
 import telepot, datetime, os, urllib.request
-from selenium.webdriver.common.by import By
-from selenium import webdriver
 data = datetime.datetime.today().strftime("%Y%m%d")
 CHAVE_API = "5971673742:AAEJyuVS3k2KDwHnsutcZDbTwvwB5dhixsc" #chave de criação do BOT do telegram via BotFather
 bot = telepot.Bot(CHAVE_API)
